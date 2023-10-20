@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Unit extends Model
+{
+    use HasFactory;
+    protected static $unit;
+
+    protected $fillable = ['name','code','description','status'];
+
+
+    public static function storeunit($request){
+        self::$unit                  = new  Unit();
+
+        self::$unit->name            = $request->name;
+        self::$unit->code            = $request->code;
+        self::$unit->description     = $request->description;
+        self::$unit->status          = $request->status;
+        self::$unit->save();
+    }
+
+    public static function  updateunit($request,$id){
+        self::$unit = Unit::find($id);
+        self::$unit->name           = $request->name;
+        self::$unit->code           = $request->code;
+        self::$unit->description    = $request->description;
+        self::$unit->status         = $request->status;
+        self::$unit->save();
+    }
+    public static function deleteunit($id){
+        self::$unit   = Unit::find($id);
+        self::$unit->delete();
+   }
+}
