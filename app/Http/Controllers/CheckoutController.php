@@ -13,6 +13,7 @@ class CheckoutController extends Controller
 {
     private $customer,$order,$orderDetail;
     public function index(){
+
         if (Session::get('customer_id')){
             $this->customer  =  Customer::find(Session::get('customer_id'));
         }else{
@@ -25,11 +26,12 @@ class CheckoutController extends Controller
             'name'               => 'required',
             'email'              => 'required |unique:customers,email',
             'mobile'             => 'required|unique:customers,mobile',
-            'delivery_address'   => 'required',
+
         ]);
     }
 
     public function newCashOrder(Request $request){
+//        return $request;
         if (Session::get('customer_id')){
             $this->customer  =  Customer::find(Session::get('customer_id'));
         }else{

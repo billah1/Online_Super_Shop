@@ -141,29 +141,7 @@
 
 </script>
 
-<script>
-    $(function(){
-        $( document).on('change', '#categoryId', function(){
-            var categoryId = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: "{{route('product.get-subcategory-by-category')}}",
-                data: {id: categoryId},
-                dataType: "JSON",
-                success: function(response){
-                    var subCategoryId = $('#subCategoryId');
-                    subCategoryId.empty();
-                    var option = '';
-                    option += '<option value="" disabled selected>-- Select Sub-Category --</option>';
-                    $.each(response, function(key, value){
-                        option += '<option value="'+value.id+'">'+value.name+'</option>';
-                    });
-                    subCategoryId.append(option);
-                }
-            });
-        });
-    })
-</script>
+
 
 
 

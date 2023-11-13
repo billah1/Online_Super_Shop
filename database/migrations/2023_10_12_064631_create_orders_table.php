@@ -16,13 +16,13 @@ return new class extends Migration
             $table->integer('customer_id');
             $table->text('order_date');
             $table->text('order_timestamp');
-            $table->float('order_total',10,2);
-            $table->float('tax_total',10,2);
-            $table->float('shipping_total',10,2);
+            $table->float('order_total',10,2)->nullable()->default(0);
+            $table->float('tax_total',10,2)->nullable()->default(0);
+            $table->float('shipping_total',10,2)->nullable()->default(0);
             $table->string('order_status')->default('Pending');
-            $table->text('delivery_address');
+            $table->text('delivery_address')->nullable();
             $table->string('delivery_status')->default('Pending');
-            $table->string('payment_type');
+            $table->string('payment_type')->nullable();
             $table->string('payment_status')->default('Pending');
             $table->string('currency')->default('BDT');
             $table->string('transaction_id')->nullable();

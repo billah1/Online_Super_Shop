@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title','Manage product')
+@section('title','Manage Book')
 
 @section('body')
 
@@ -16,30 +16,28 @@
                             <tr>
                                 <th>SL NO</th>
                                 <th>Name</th>
-                                <th>Code</th>
-                                <th>Stock Amount</th>
+                                <th>Author</th>
+                                <th>Quantity</th>
                                 <th>Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $product)
+                            @foreach($books as $book)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->code}}</td>
-                                    <td>{{$product->stock_amount}}</td>
-                                    <td><img src="{{asset($product->image)}}" alt="{{$product->name}}" height="50" width="80"/></td>
-                                    <td>{{$product->status == 1 ? 'Published' : 'Unpublished'}}</td>
+                                    <td>{{$book->name}}</td>
+                                    <td>{{$book->author}}</td>
+                                    <td>{{$book->qty}}</td>
+                                    <td><img src="{{asset($book->image)}}" alt="{{$book->name}}" height="50" width="80"/></td>
+                                    <td>{{$book->status == 1 ? 'Published' : 'Unpublished'}}</td>
                                     <td>
-                                        <a href="{{route('product.detail', ['id' => $product->id])}}" class="btn btn-info btn-sm">
+
+                                        <a href="{{route('book.edit', ['id' => $book->id])}}" class="btn btn-success btn-sm">
                                             <i class="ti-reddit"></i>
                                         </a>
-                                        <a href="{{route('product.edit', ['id' => $product->id])}}" class="btn btn-success btn-sm">
-                                            <i class="ti-reddit"></i>
-                                        </a>
-                                        <a href="{{route('product.delete', ['id' => $product->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this');">
+                                        <a href="{{route('book.delete', ['id' => $book->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this');">
                                             <i class="ti-trash"></i>
                                         </a>
                                     </td>

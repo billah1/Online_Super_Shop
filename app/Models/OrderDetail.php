@@ -16,10 +16,9 @@ class OrderDetail extends Model
 
             self::$orderDetail                    =  new  OrderDetail();
             self::$orderDetail->order_id           = $orderId;
-            self::$orderDetail->product_id         = $item->id;
-            self::$orderDetail->product_name       = $item->name;
-            self::$orderDetail->product_price      = $item->price;
-            self::$orderDetail->product_qty        = $item->qty;
+            self::$orderDetail->book_id            = $item->id;
+            self::$orderDetail->book_name          = $item->name;
+            self::$orderDetail->qty               = $item->qty;
             self::$orderDetail->save();
 
             ShoppingCart::remove($item->__raw_id);

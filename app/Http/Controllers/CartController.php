@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use ShoppingCart;
 
 class CartController extends Controller
 {
-    protected $product;
+    protected $book;
     public function index(Request $request,$id){
-        $this->product =Product::find($id);
-        ShoppingCart::add($this->product->id, $this->product->name, $request->qty, $this->product->product_price, ['image' => $this->product->image]);
+        $this->book =Book::find($id);
+        ShoppingCart::add($this->book->id, $this->book->name, $request->qty, $this->book->price, ['image' => $this->book->image]);
         return redirect('/show-cart');
 
     }

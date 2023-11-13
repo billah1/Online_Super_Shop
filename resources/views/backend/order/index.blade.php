@@ -32,9 +32,7 @@
                             <th>Order NO</th>
                             <th>Order Date</th>
                             <th>Customer Info</th>
-                            <th>Order Total</th>
                             <th>Order Status</th>
-                            <th>Payment Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -45,25 +43,23 @@
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->order_date}}</td>
                                 <td>{{$order->customer->name.' '.'('.$order->customer->mobile.')'}}</td>
-                                <td>{{$order->order_total}}</td>
                                 <td>{{$order->order_status}}</td>
-                                <td>{{$order->payment_status}}</td>
                                 <td style="width: 220px">
-                                    <a href="{{route('admin.order-detail',['id'=>$order->id])}}" class="btn btn-info" title="View Order Detail">
-                                        <i class="fa fa-info"></i>
-                                    </a>
+{{--                                    <a href="{{route('admin.order-detail',['id'=>$order->id])}}" class="btn btn-info" title="View Order Detail">--}}
+{{--                                        <i class="fa fa-info"></i>--}}
+{{--                                    </a>--}}
 
                                     <a href="{{route('admin.order-edit',['id'=>$order->id])}}" class="btn btn-success {{$order->order_status == 'Complete' ? 'disabled' : ''}}" title="Order Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
 
-                                    <a href="{{route('admin.order-invoice',['id'=>$order->id])}}" class="btn btn-primary" title="View Order Invoice">
-                                        <i class="fa fa-file-invoice"></i>
-                                    </a>
+{{--                                    <a href="{{route('admin.order-invoice',['id'=>$order->id])}}" class="btn btn-primary" title="View Order Invoice">--}}
+{{--                                        <i class="fa fa-file-invoice"></i>--}}
+{{--                                    </a>--}}
 
-                                    <a href="{{route('admin.print-invoice',['id'=>$order->id])}}" class="btn btn-dark" target="_blank" title="Print Order Invoice">
-                                        <i class="fa fa-print"></i>
-                                    </a>
+{{--                                    <a href="{{route('admin.print-invoice',['id'=>$order->id])}}" class="btn btn-dark" target="_blank" title="Print Order Invoice">--}}
+{{--                                        <i class="fa fa-print"></i>--}}
+{{--                                    </a>--}}
 
                                     <a href="{{route('admin.order-delete',['id'=>$order->id])}}" class="btn btn-danger {{$order->order_status == 'Cancel' ? '' : 'disabled'}}" title="Delete Order">
                                         <i class="fa fa-trash"></i>

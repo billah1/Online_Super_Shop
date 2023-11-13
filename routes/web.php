@@ -6,13 +6,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerOrderController;
-use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\AdminOrderController;
 
 /*
@@ -27,8 +23,8 @@ use App\Http\Controllers\AdminOrderController;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/product-category/{id}',[HomeController::class,'category'])->name('product-category');
-Route::get('/product-detail/{id}',[HomeController::class,'detail'])->name('product-detail');
+Route::get('/book-category/{id}',[HomeController::class,'category'])->name('book-category');
+Route::get('/book-detail/{id}',[HomeController::class,'detail'])->name('book-detail');
 
 Route::post('/add-to-cart/{id}',[CartController::class,'index'])->name('add-to-cart');
 Route::get('/show-cart',[CartController::class,'show'])->name('show-cart');
@@ -51,19 +47,7 @@ Route::middleware(['customer',])->group(function () {
 
 
 
-// SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
-
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-
-Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
-//SSLCOMMERZ END
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
 
@@ -76,37 +60,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
     Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
 
-    Route::get('/sub-category/add',[SubCategoryController::class,'index'])->name('sub-category.add');
-    Route::post('/sub-category/store',[SubCategoryController::class,'store'])->name('sub-category.store');
-    Route::get('/sub-category/manage',[SubCategoryController::class,'manage'])->name('sub-category.manage');
-    Route::get('/sub-category/edit/{id}',[SubCategoryController::class,'edit'])->name('sub-category.edit');
-    Route::post('/sub-category/update/{id}',[SubCategoryController::class,'update'])->name('sub-category.update');
-    Route::get('/sub-category/delete/{id}',[SubCategoryController::class,'delete'])->name('sub-category.delete');
 
-    Route::get('/brand/add',[BrandController::class,'index'])->name('brand.add');
-    Route::post('/brand/store',[BrandController::class,'store'])->name('brand.store');
-    Route::get('/brand/manage',[BrandController::class,'manage'])->name('brand.manage');
-    Route::get('/brand/edit/{id}',[BrandController::class,'edit'])->name('brand.edit');
-    Route::post('/brand/update/{id}',[BrandController::class,'update'])->name('brand.update');
-    Route::get('/brand/delete/{id}',[BrandController::class,'delete'])->name('brand.delete');
+    Route::get('/book/add',[BookController::class,'index'])->name('book.add');
+    Route::post('/book/store',[BookController::class,'store'])->name('book.store');
+    Route::get('/book/manage',[BookController::class,'manage'])->name('book.manage');
+    Route::get('/book/edit/{id}',[BookController::class,'edit'])->name('book.edit');
+    Route::post('/book/update/{id}',[BookController::class,'update'])->name('book.update');
+    Route::get('/book/delete/{id}',[BookController::class,'delete'])->name('book.delete');
 
-
-    Route::get('/unit/add',[UnitController::class,'index'])->name('unit.add');
-    Route::post('/unit/store',[UnitController::class,'store'])->name('unit.store');
-    Route::get('/unit/manage',[UnitController::class,'manage'])->name('unit.manage');
-    Route::get('/unit/edit/{id}',[UnitController::class,'edit'])->name('unit.edit');
-    Route::post('/unit/update/{id}',[UnitController::class,'update'])->name('unit.update');
-    Route::get('/unit/delete/{id}',[UnitController::class,'delete'])->name('unit.delete');
-
-
-    Route::get('/product/add',[ProductController::class,'index'])->name('product.add');
-    Route::get('/product/get-subcategory-by-category',[ProductController::class,'getSubcategoryByCategory'])->name('product.get-subcategory-by-category');
-    Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
-    Route::get('/product/manage',[ProductController::class,'manage'])->name('product.manage');
-    Route::get('/product/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
-    Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
-    Route::post('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
-    Route::get('/product/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
 
 
     Route::get('/admin/all-order',[AdminOrderController::class,'index'])->name('admin.all-order');
